@@ -1,0 +1,94 @@
+.order-table{   
+	border-collapse:collapse;
+}
+
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	
+}
+
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
+.title{
+	font-size: 25px;
+	font-weight:bold;
+}
+
+.input{
+	width:250px;
+	height: 20px;
+	padding-left:5px;
+}
+
+.label{
+	font-size:18px;
+}
+
+.textarea{
+	padding-left:5px;
+	width:250px;
+}
+
+.btn-cadastrar{
+	padding: 8px 20px;
+	color: white;
+	border: none;
+	background-color: #07A637;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.btn-limpar{
+	padding: 8px 20px;
+	color: white;
+	border: none;
+	background-color: #EC3232;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btn-limpar:hover{
+	background-color: #E30A0A;
+}
+
+.btn-cadastrar:hover{
+	background-color: #027825;
+}
+
+
+.btn-acoes1{
+	padding: 5px 10px;
+	margin-right:5px;
+	color: white;
+	background-color: #1A3EF4;
+	border:none;
+	cursor: pointer;
+}
+
+.btn-acoes1:hover{
+	background-color: #051B90;
+}
+
+.btn-acoes2{
+	padding: 5px 10px;
+	color: white;
+	background-color: #EC3232;
+	border:none;
+	cursor:pointer;
+}
+
+.btn-acoes2:hover{
+	background-color: #E30A0A;
+}

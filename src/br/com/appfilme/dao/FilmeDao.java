@@ -2,41 +2,11 @@ package br.com.appfilme.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import br.com.appfilme.models.Filme;
-import br.com.appfilme.utils.JPAUtils;
 
-public class FilmeDao {
-	
-	public List<Filme> getAll(){
-		EntityManager em  = JPAUtils.createEntityManager();
-		List<Filme> result = em.createQuery("SELECT f FROM Filme f", Filme.class).getResultList();
-		return result;
-	}
-	
-	
-	public void save(Filme filme) {
-		EntityManager em  = JPAUtils.createEntityManager();
-		em.getTransaction().begin();
-		if(filme.getId() == null) {
-			em.persist(filme);
-		}else {
-			em.merge(filme);
-		}
-		em.getTransaction().commit();
-		em.close();
-	}
-	
-	public void remove(Long id) {
-		EntityManager em = JPAUtils.createEntityManager();
-		em.getTransaction().begin();
-		Filme filme = em.find(Filme.class, id);
-		em.remove(filme);
-		em.getTransaction().commit();
-		em.close();
-	}
-	
-	
+public interface FilmeDao {
+	List<Filme> getAll();
+	void save(Filme filme);
+	void remove(Long id);
 
 }

@@ -4,23 +4,32 @@
 xmlns:h="http://xmlns.jcp.org/jsf/html"
 xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-
+	<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/css/styles.css" media="screen" />
 </h:head>
 <h:body>
-	
+	<h:outputText styleClass="title" value="#{filmeBean.filme.id == null ? 'Cadastro' : 'Edição'}" />
 	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel for="titulo" value="Titulo: "/>
-			<h:inputText id="titulo" value="#{filmeBean.filme.titulo}"/>
-			<h:outputLabel for="sinopse" value="Sinopse: "/>
-			<h:inputText id="sinopse" value="#{filmeBean.filme.sinopse}"/>
-			<h:outputLabel for="nota" value="Nota: "/>
-			<h:inputText id="nota" value="#{filmeBean.filme.nota}"/>
-			<h:commandButton value="Cadastrar" action="#{filmeBean.salvar}"/>
+		<h:panelGrid columns="1">
+			<h:inputHidden styleClass="input" id="id" value="#{filmeBean.filme.id}"/>
+			<h:outputLabel styleClass="label" for="titulo" value="Titulo: "/>
+			<h:inputText required="true" requiredMessage="Campo obrigatório" styleClass="input" id="titulo" value="#{filmeBean.filme.titulo}"/>
+			<h:message for="titulo" style="color: red;" />
+			<h:outputLabel styleClass="label" for="sinopse" value="Sinopse: "/>
+			<h:inputTextarea required="true" requiredMessage="Campo obrigatório" id="sinopse" rows="5" styleClass="textarea" value="#{filmeBean.filme.sinopse}"/>
+			<h:message for="sinopse" style="color: red;" />
+			<h:outputLabel styleClass="label" for="nota" value="Nota: "/>
+			<h:inputText maxlength="2" validatorMessage="Nota deve ser entre 1 e 10" required="true" requiredMessage="Campo obrigatório" styleClass="input" id="nota" value="#{filmeBean.filme.nota}">
+				<f:validateLongRange for="nota" minimum="1" maximum="10" />
+			</h:inputText>
+			<h:message for="nota" style="color: red;" />
 		</h:panelGrid>
+		<h:commandButton styleClass="btn-cadastrar" value="${filmeBean.filme.id == null ? 'Cadastrar' : 'Editar'}" action="#{filmeBean.salvar}"/>
+		<h:commandLink  action="#{filmeBean.reset}" styleClass="btn-limpar" value="Limpar"/>
 	</h:form>
-	
-	<h:dataTable var="filme" value="#{filmeBean.filmes}">
+	<br/>
+	<h:dataTable width="800" cellpadding="10"  border="1" styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row" var="filme" value="#{filmeBean.filmes}">
 		<h:column>
 			<f:facet name="header">Titulo</f:facet>
 			#{filme.titulo}
@@ -32,6 +41,13 @@ xmlns:f="http://xmlns.jcp.org/jsf/core">
 		<h:column>
 			<f:facet name="header">Nota</f:facet>
 			#{filme.nota}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Ações</f:facet>
+			<h:form>
+				<h:commandButton actionListener="#{filmeBean.selecionaFilme(filme)}" styleClass="btn-acoes1" value="Editar"/>
+				<h:commandButton actionListener="#{filmeBean.excluir(filme.id)}" styleClass="btn-acoes2" value="Excluir"/>
+			</h:form>
 		</h:column>
 	</h:dataTable>
 	
